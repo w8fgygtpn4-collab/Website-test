@@ -1,0 +1,2 @@
+const test=require('node:test');const assert=require('node:assert/strict');const {topics,questions}=require('./questions');
+test('Every ACS area has practice questions with valid answers and references',()=>{assert.equal(topics.length,11);assert.equal(new Set(questions.map(q=>q.id)).size,questions.length);for(const t of topics)assert.ok(questions.some(q=>q.topic===t.id));for(const q of questions){assert.ok(topics.some(t=>t.id===q.topic));assert.ok(q.answer>=0&&q.answer<q.options.length);assert.ok(q.explanation.length>30);assert.ok(q.source);}});
